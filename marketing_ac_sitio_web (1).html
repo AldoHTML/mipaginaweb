@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Marketing AC — Ideas que conectan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --azul: #2B6BE6;
+  --azul-light: #5B9BFF;
+  --rosa: #FF5FA0;
+  --amarillo: #FFD43B;
+  --blanco: #FFFFFF;
+  --negro: #1A1A2E;
+  --gris: #F4F6FF;
+  --naranja: #E8622A;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--negro);
+  background: var(--blanco);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ---- CURSOR PERSONALIZADO ---- */
+#cursor {
+  width: 20px; height: 20px;
+  background: var(--rosa);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, background 0.3s, width 0.3s, height 0.3s;
+  mix-blend-mode: multiply;
+}
+#cursor.hovered { width: 40px; height: 40px; background: var(--azul); }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed;
+  top: 0; width: 100%;
+  z-index: 100;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--amarillo);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--negro);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.nav-logo span { color: var(--azul); }
+.nav-logo .dot { color: var(--naranja); font-size: 32px; line-height: 0; position: relative; top: 2px; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--negro);
+  font-weight: 600;
+  font-size: 15px;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 3px;
+  background: var(--rosa);
+  border-radius: 10px;
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--azul); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--azul);
+  color: white !important;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--rosa) !important; transform: scale(1.05); }
+
+/* ---- HERO ---- */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 80px 60px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F4F6FF 0%, #FFF0F7 50%, #FFFBE6 100%);
+}
+
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+.blob1 { width: 400px; height: 400px; background: var(--azul-light); top: -80px; right: 100px; animation-delay: 0s; }
+.blob2 { width: 300px; height: 300px; background: var(--rosa); top: 200px; right: 300px; animation-delay: 2s; }
+.blob3 { width: 350px; height: 350px; background: var(--amarillo); bottom: -50px; left: 60px; animation-delay: 4s; }
+
+@keyframes blobFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-content {
+  flex: 1;
+  z-index: 1;
+  max-width: 600px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--amarillo);
+  color: var(--negro);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 7px 18px;
+  border-radius: 50px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge span { font-size: 18px; }
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 5.5vw, 76px);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+  animation: fadeUp 0.7s ease both;
+  animation-delay: 0.1s;
+}
+.hero-title .highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--azul);
+}
+.hero-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0;
+  width: 100%; height: 8px;
+  background: var(--amarillo);
+  z-index: -1;
+  border-radius: 4px;
+}
+.hero-title .rosa { color: var(--rosa); }
+
+.hero-desc {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 40px;
+  animation: fadeUp 0.8s ease both;
+  animation-delay: 0.2s;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.9s ease both;
+  animation-delay: 0.3s;
+}
+.btn-primary {
+  background: var(--azul);
+  color: white;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 30px rgba(43,107,230,0.35);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(43,107,230,0.45); }
+.btn-secondary {
+  background: white;
+  color: var(--negro);
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--negro);
+  transition: all 0.3s;
+}
+.btn-secondary:hover { background: var(--rosa); color: white; border-color: var(--rosa); transform: translateY(-3px); }
+
+/* Mascota Hero */
+.hero-mascot {
+  flex: 0 0 420px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeUp 1s ease both;
+  animation-delay: 0.4s;
+}
+.mascot-container {
+  position: relative;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+.mascot-bg {
+  width: 340px; height: 340px;
+  background: linear-gradient(135deg, var(--azul) 0%, var(--rosa) 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.12;
+}
+.mascot-svg {
+  width: 320px;
+  position: relative;
+  z-index: 2;
+}
+/* Burbujas flotantes alrededor del mascot */
+.bubble {
+  position: absolute;
+  background: white;
+  border: 2px solid var(--negro);
+  border-radius: 20px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 4px 4px 0 var(--negro);
+  white-space: nowrap;
+  z-index: 10;
+}
+.bubble::after {
+  content: '';
+  position: absolute;
+  width: 12px; height: 12px;
+  background: white;
+  border-right: 2px solid var(--negro);
+  border-bottom: 2px solid var(--negro);
+}
+.bubble1 { top: 30px; left: -20px; background: #FFF0F7; animation: bubblePop 3s ease-in-out infinite; }
+.bubble1::after { bottom: -7px; left: 20px; transform: rotate(45deg); background: #FFF0F7; }
+.bubble2 { top: 30px; right: -30px; background: #F0F7FF; animation: bubblePop 3.5s ease-in-out infinite 0.5s; }
+.bubble2::after { bottom: -7px; right: 20px; transform: rotate(45deg); background: #F0F7FF; }
+.bubble3 { bottom: 80px; left: -40px; background: #FFFBE6; animation: bubblePop 4s ease-in-out infinite 1s; }
+.bubble3::after { bottom: -7px; left: 20px; transform: rotate(45deg); background: #FFFBE6; }
+.bubble4 { bottom: 80px; right: -50px; background: #F0FFF4; animation: bubblePop 3.2s ease-in-out infinite 1.5s; }
+.bubble4::after { bottom: -7px; right: 20px; transform: rotate(45deg); background: #F0FFF4; }
+
+@keyframes bubblePop {
+  0%,100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(-1deg); }
+}
+
+/* Stats */
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 48px;
+  animation: fadeUp 1s ease both;
+  animation-delay: 0.4s;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--azul);
+  display: block;
+}
+.stat-label { font-size: 13px; color: #777; font-weight: 500; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- PROBLEMAS SECTION ---- */
+#problemas {
+  padding: 100px 80px;
+  background: var(--negro);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+#problemas::before {
+  content: '?';
+  position: absolute;
+  font-size: 600px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  opacity: 0.03;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  line-height: 1;
+}
+.section-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0.65;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 60px;
+  letter-spacing: -0.5px;
+}
+.problemas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+}
+.problema-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.4s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.problema-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--azul), var(--rosa));
+  opacity: 0;
+  transition: opacity 0.4s;
+  border-radius: 20px;
+}
+.problema-card:hover::before { opacity: 0.15; }
+.problema-card:hover { transform: translateY(-4px); border-color: var(--azul-light); }
+.problema-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.problema-text { position: relative; z-index: 1; }
+.problema-text h3 { font-weight: 700; margin-bottom: 6px; font-size: 15px; }
+.problema-text p { font-size: 14px; opacity: 0.65; line-height: 1.5; }
+
+/* ---- SERVICIOS ---- */
+#servicios {
+  padding: 100px 80px;
+  background: var(--gris);
+}
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.servicio-card {
+  background: white;
+  border-radius: 24px;
+  padding: 36px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: default;
+}
+.servicio-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+.servicio-card:nth-child(1):hover { border-color: var(--azul); }
+.servicio-card:nth-child(2):hover { border-color: var(--rosa); }
+.servicio-card:nth-child(3):hover { border-color: var(--amarillo); }
+.servicio-card:nth-child(4):hover { border-color: var(--rosa); }
+.servicio-card:nth-child(5):hover { border-color: var(--azul); }
+.servicio-card:nth-child(6):hover { border-color: var(--naranja); }
+
+.servicio-icon-wrap {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.ic-azul { background: rgba(43,107,230,0.1); }
+.ic-rosa { background: rgba(255,95,160,0.1); }
+.ic-amarillo { background: rgba(255,212,59,0.15); }
+.ic-naranja { background: rgba(232,98,42,0.1); }
+
+.servicio-card h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+.servicio-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+.servicio-tag {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+.tag-azul { background: rgba(43,107,230,0.1); color: var(--azul); }
+.tag-rosa { background: rgba(255,95,160,0.1); color: var(--rosa); }
+.tag-amarillo { background: rgba(200,160,0,0.1); color: #9A7A00; }
+.tag-naranja { background: rgba(232,98,42,0.1); color: var(--naranja); }
+
+/* ---- PROPUESTA DE VALOR ---- */
+#propuesta {
+  padding: 100px 80px;
+  background: white;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+.propuesta-visual {
+  flex: 0 0 400px;
+  position: relative;
+}
+.propuesta-card-main {
+  background: var(--azul);
+  color: white;
+  border-radius: 28px;
+  padding: 48px;
+  position: relative;
+  z-index: 1;
+}
+.propuesta-card-main h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+.propuesta-card-main p { font-size: 16px; opacity: 0.85; line-height: 1.7; }
+.propuesta-deco1 {
+  position: absolute;
+  width: 300px; height: 300px;
+  background: var(--amarillo);
+  border-radius: 28px;
+  top: 20px; left: 20px;
+  z-index: 0;
+  transform: rotate(3deg);
+}
+.propuesta-deco2 {
+  position: absolute;
+  width: 300px; height: 300px;
+  background: var(--rosa);
+  border-radius: 28px;
+  top: -10px; left: -10px;
+  z-index: 0;
+  transform: rotate(-4deg);
+  opacity: 0.5;
+}
+.propuesta-content { flex: 1; }
+.propuesta-content .section-label { color: var(--azul); }
+.value-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+.value-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: var(--gris);
+  transition: all 0.3s;
+  cursor: default;
+}
+.value-item:hover { background: #EEF2FF; transform: translateX(8px); }
+.value-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.d-azul { background: var(--azul); }
+.d-rosa { background: var(--rosa); }
+.d-amarillo { background: var(--amarillo); border: 1px solid #ccc; }
+.value-item h4 { font-weight: 700; margin-bottom: 4px; }
+.value-item p { font-size: 14px; color: #666; line-height: 1.5; }
+
+/* ---- PROCESO ---- */
+#proceso {
+  padding: 100px 80px;
+  background: linear-gradient(135deg, #F4F6FF 0%, #FFF0F7 100%);
+  text-align: center;
+}
+.proceso-steps {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.step {
+  background: white;
+  border-radius: 24px;
+  padding: 36px 28px;
+  width: 200px;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  transition: transform 0.3s;
+  cursor: default;
+}
+.step:hover { transform: translateY(-8px); }
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 800;
+  opacity: 0.08;
+  position: absolute;
+  top: 12px; right: 16px;
+}
+.step-icon { font-size: 40px; margin-bottom: 16px; }
+.step h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 8px; letter-spacing: -0.2px; }
+.step p { font-size: 13px; color: #777; line-height: 1.5; }
+.step-arrow {
+  font-size: 28px;
+  color: var(--azul-light);
+  opacity: 0.5;
+  margin: 0 8px;
+}
+
+/* ---- CTA ---- */
+#cta {
+  padding: 100px 80px;
+  background: var(--negro);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(43,107,230,0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+#cta .section-title { color: white; margin-bottom: 16px; }
+#cta p { font-size: 18px; opacity: 0.7; margin-bottom: 48px; }
+.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-cta-main {
+  background: var(--amarillo);
+  color: var(--negro);
+  padding: 18px 44px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 8px 30px rgba(255,212,59,0.4);
+}
+.btn-cta-main:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 16px 50px rgba(255,212,59,0.5); }
+.btn-cta-wa {
+  background: #25D366;
+  color: white;
+  padding: 18px 44px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.35);
+}
+.btn-cta-wa:hover { transform: translateY(-4px) scale(1.03); }
+
+/* ---- FOOTER ---- */
+footer {
+  background: #0D0D1A;
+  color: white;
+  padding: 48px 80px 32px;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.footer-brand .nav-logo { color: white; }
+.footer-brand p { font-size: 14px; opacity: 0.5; margin-top: 12px; max-width: 280px; line-height: 1.6; }
+.footer-links h4 { font-weight: 700; margin-bottom: 16px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; }
+.footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { color: white; text-decoration: none; font-size: 14px; opacity: 0.7; transition: opacity 0.3s; }
+.footer-links a:hover { opacity: 1; }
+.footer-bottom {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  opacity: 0.4;
+}
+
+/* ---- INTERACTIVO: CONTADOR ---- */
+.counter { display: inline-block; }
+
+/* ---- SCROLL REVEAL ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ---- TOOLTIPS de servicios ---- */
+.tooltip-trigger { position: relative; }
+.tooltip-box {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  background: var(--negro);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.2s;
+  z-index: 20;
+}
+.tooltip-trigger:hover .tooltip-box { opacity: 1; transform: translateX(-50%) scale(1); }
+
+/* ---- TICKER ---- */
+.ticker-wrap {
+  background: var(--amarillo);
+  padding: 12px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-flex;
+  animation: ticker 20s linear infinite;
+}
+.ticker-item {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0 32px;
+}
+.ticker-sep { opacity: 0.4; }
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---- TOGGLE VISTA ---- */
+.view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #EAEDFF;
+  border-radius: 50px;
+  padding: 5px;
+  margin-top: 28px;
+}
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border-radius: 50px;
+  border: none;
+  background: transparent;
+  color: #777;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.toggle-btn.active {
+  background: white;
+  color: var(--azul);
+  box-shadow: 0 4px 16px rgba(43,107,230,0.15);
+}
+.toggle-btn:hover:not(.active) { color: var(--azul); }
+
+.toggle-hint {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
+  animation: fadeUp 0.4s ease both;
+}
+
+/* ---- CUBO EMBEBIDO ---- */
+.cubo-info-card {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 2px solid #f5a623;
+  border-radius: 12px;
+  padding: 16px 28px;
+  text-align: center;
+  min-width: 260px;
+  opacity: 0;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+.cubo-info-card.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.cubo-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.cubo-card-desc { font-size: 12px; color: #999; line-height: 1.6; }
+.cubo-card-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 14px;
+  border-radius: 20px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.cubo-controls {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cubo-ctrl {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  border: 1px solid #222;
+  background: rgba(255,255,255,0.04);
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.cubo-ctrl:hover { border-color: #f5a623; color: #f5a623; }
+#cuboBtnAuto { color: #f5a623; border-color: #f5a623; }
+.cubo-dots {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.cubo-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #222;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.cubo-dot.active { background: #f5a623; border-color: #f5a623; transform: scale(1.4); }
+.cubo-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 20px;
+  font-size: 10px;
+  color: #333;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 14px 24px; }
+  .nav-links { display: none; }
+  #hero { flex-direction: column; padding: 100px 24px 60px; text-align: center; }
+  .hero-mascot { flex: none; width: 100%; }
+  .hero-btns { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  #problemas, #servicios, #propuesta, #proceso, #cta, footer { padding: 60px 24px; }
+  .problemas-grid { grid-template-columns: 1fr; }
+  .servicios-grid { grid-template-columns: 1fr; }
+  #propuesta { flex-direction: column; }
+  .propuesta-visual { flex: none; width: 100%; }
+  .proceso-steps { flex-direction: column; gap: 16px; }
+  .step-arrow { transform: rotate(90deg); }
+  .footer-top { flex-direction: column; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    MARKETING <span>ac</span><span class="dot">•</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#problemas">¿Te identificas?</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#propuesta">Nosotros</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#cta" class="nav-cta">Contáctame →</a></li>
+  </ul>
+</nav>
+
+<!-- TICKER -->
+<div style="position:fixed; bottom:0; width:100%; z-index:50;">
+  <div class="ticker-wrap">
+    <div class="ticker-inner" id="ticker">
+      <span class="ticker-item">Marketing Tradicional <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Marketing Digital <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">SEO <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Sitios Web <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Facebook Ads <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">CRM Personalizado <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Identidad Visual <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Sistemas de Venta <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Marketing Tradicional <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Marketing Digital <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">SEO <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Sitios Web <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Facebook Ads <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">CRM Personalizado <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Identidad Visual <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Sistemas de Venta <span class="ticker-sep">✦</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blobs">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span>💡</span> IDEAS QUE CONECTAN. ESTRATEGIAS QUE VENDEN.</div>
+    <h1 class="hero-title">
+      Tu negocio<br>merece <span class="highlight">crecer</span><br>de verdad<span class="rosa">.</span>
+    </h1>
+    <p class="hero-desc">
+      Marketing presencial y digital diseñado para resolver los problemas reales de tu negocio. Estrategia, tecnología y creatividad — todo en uno.
+    </p>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn-primary">Ver servicios ↓</a>
+      <a href="#cta" class="btn-secondary">Agenda una consulta</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num counter" data-target="8">0</span>
+        <span class="stat-label">Servicios</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num counter" data-target="100">0</span>
+        <span class="stat-label">% Compromiso</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Consulta gratis</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-mascot">
+    <div class="mascot-container">
+      <div class="mascot-bg"></div>
+      <!-- Personaje SVG inline (estilo del muñequito de la imagen) -->
+      <svg class="mascot-svg" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Laptop base -->
+        <rect x="40" y="270" width="200" height="14" rx="7" fill="#1A1A2E" stroke="#1A1A2E" stroke-width="2"/>
+        <!-- Laptop pantalla -->
+        <rect x="55" y="190" width="170" height="82" rx="12" fill="#1A1A2E"/>
+        <rect x="62" y="196" width="156" height="70" rx="8" fill="#2B6BE6"/>
+        <!-- Lucecita laptop -->
+        <circle cx="140" cy="285" r="5" fill="#444"/>
+        <!-- Cuerpo -->
+        <ellipse cx="140" cy="160" rx="60" ry="50" fill="#F5C5A3"/>
+        <!-- Ropa (camiseta) -->
+        <path d="M80 200 Q90 230 140 235 Q190 230 200 200 L190 180 Q170 195 140 195 Q110 195 90 180Z" fill="#2B6BE6"/>
+        <!-- Brazos -->
+        <path d="M80 190 Q50 200 55 230 Q58 245 70 240 Q82 235 90 210" stroke="#F5C5A3" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <path d="M200 190 Q230 200 225 230 Q222 245 210 240 Q198 235 190 210" stroke="#F5C5A3" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <!-- Manos en laptop -->
+        <ellipse cx="68" cy="255" rx="14" ry="10" fill="#F5C5A3"/>
+        <ellipse cx="212" cy="255" rx="14" ry="10" fill="#F5C5A3"/>
+        <!-- Cuello -->
+        <rect x="127" y="195" width="26" height="20" rx="6" fill="#F5C5A3"/>
+        <!-- Cabeza -->
+        <ellipse cx="140" cy="110" rx="58" ry="60" fill="#F5C5A3"/>
+        <!-- Cabello -->
+        <path d="M82 90 Q85 40 140 38 Q195 40 198 90 Q188 60 140 62 Q92 60 82 90Z" fill="#1A1A2E"/>
+        <!-- Mechón frontal -->
+        <path d="M118 62 Q115 45 125 40" stroke="#1A1A2E" stroke-width="8" stroke-linecap="round"/>
+        <!-- Lentes - aro izquierdo -->
+        <circle cx="118" cy="110" r="18" fill="rgba(255,255,255,0.15)" stroke="#1A1A2E" stroke-width="4"/>
+        <!-- Lentes - aro derecho -->
+        <circle cx="162" cy="110" r="18" fill="rgba(255,255,255,0.15)" stroke="#1A1A2E" stroke-width="4"/>
+        <!-- Lentes - puente -->
+        <line x1="136" y1="110" x2="144" y2="110" stroke="#1A1A2E" stroke-width="4" stroke-linecap="round"/>
+        <!-- Ojos (detrás de lentes) -->
+        <path d="M110 112 Q118 106 126 112" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M154 112 Q162 106 170 112" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <!-- Sonrisa -->
+        <path d="M122 130 Q140 145 158 130" stroke="#1A1A2E" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <!-- Mejillas rosadas -->
+        <circle cx="107" cy="128" r="10" fill="rgba(255,95,160,0.25)"/>
+        <circle cx="173" cy="128" r="10" fill="rgba(255,95,160,0.25)"/>
+        <!-- Orejas -->
+        <ellipse cx="82" cy="112" rx="10" ry="14" fill="#F5C5A3"/>
+        <ellipse cx="198" cy="112" rx="10" ry="14" fill="#F5C5A3"/>
+      </svg>
+
+      <!-- Burbujas de dolor/oportunidad -->
+      <div class="bubble bubble1">😩 ¿Sin ventas?</div>
+      <div class="bubble bubble2">🚀 ¡Te ayudo!</div>
+      <div class="bubble bubble3">🤔 ¿Y la competencia?</div>
+      <div class="bubble bubble4">📈 Crezcamos</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMAS -->
+<section id="problemas">
+  <div class="section-label" style="color:rgba(255,255,255,0.5)">¿Te suena familiar?</div>
+  <h2 class="section-title reveal">
+    Sé exactamente qué<br>te está frenando<span style="color:var(--rosa)">.</span>
+  </h2>
+  <div class="problemas-grid reveal">
+    <div class="problema-card">
+      <div class="problema-icon">😴</div>
+      <div class="problema-text">
+        <h3>No puedo tomar vacaciones tranquilo</h3>
+        <p>Temor de que el negocio se caiga si no estás presente. Necesitas sistemas que trabajen por ti.</p>
+      </div>
+    </div>
+    <div class="problema-card">
+      <div class="problema-icon">📉</div>
+      <div class="problema-text">
+        <h3>Ya hice de todo y las ventas no aumentan</h3>
+        <p>Has probado varias cosas sin estrategia clara. El problema está en el enfoque, no en el esfuerzo.</p>
+      </div>
+    </div>
+    <div class="problema-card">
+      <div class="problema-icon">🤔</div>
+      <div class="problema-text">
+        <h3>No entiendo por qué a la competencia le va mejor</h3>
+        <p>La diferencia está en cómo se comunican, posicionan y conectan con sus clientes. Eso tiene solución.</p>
+      </div>
+    </div>
+    <div class="problema-card">
+      <div class="problema-icon">🚀</div>
+      <div class="problema-text">
+        <h3>Quiero llevar mi negocio al siguiente nivel</h3>
+        <p>Ya tienes la base, ahora necesitas la estrategia correcta para escalar sin perder el control.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+
+  <!-- Encabezado + Toggle -->
+  <div style="text-align:center; margin-bottom: 20px;">
+    <div class="section-label" style="color:var(--azul)">Lo que hago por tu negocio</div>
+    <h2 class="section-title reveal" style="margin-bottom:0">Servicios que<br>realmente funcionan<span style="color:var(--rosa)">.</span></h2>
+
+    <!-- TOGGLE SWITCH -->
+    <div class="view-toggle reveal" id="viewToggle">
+      <button class="toggle-btn active" id="btnTarjetas" onclick="setView('tarjetas')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Tarjetas
+      </button>
+      <button class="toggle-btn" id="btnCubo" onclick="setView('cubo')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Cubo 3D
+      </button>
+    </div>
+    <p class="toggle-hint" id="toggleHint" style="display:none">🖱️ Arrastra para rotar · Scroll para zoom · Clic en una cara para ver el servicio</p>
+  </div>
+
+  <!-- VISTA TARJETAS -->
+  <div class="servicios-grid" id="vistaCards" style="margin-top:50px">
+    <div class="servicio-card reveal">
+      <div class="servicio-icon-wrap ic-azul">📣</div>
+      <h3>Marketing Tradicional</h3>
+      <p>Estrategias probadas con flyers, publicidad local, eventos y medios convencionales para conectar con tu comunidad.</p>
+      <span class="servicio-tag tag-azul">Presencial</span>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon-wrap ic-rosa">🎨</div>
+      <h3>Identidad Visual</h3>
+      <p>Creación de logotipos, paletas de colores, tipografías y materiales que hacen que tu marca sea memorable.</p>
+      <span class="servicio-tag tag-rosa">Branding</span>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon-wrap ic-amarillo">📊</div>
+      <h3>Marketing Estratégico + CRM</h3>
+      <p>Definimos juntos tu estrategia de crecimiento y creamos un CRM personalizado para gestionar tus clientes.</p>
+      <span class="servicio-tag tag-amarillo">Estrategia</span>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon-wrap ic-azul">🌐</div>
+      <h3>Páginas Web & Landing Pages</h3>
+      <p>Sitios web modernos, rápidos y optimizados que convierten visitas en clientes. Desde negocios locales hasta profesionistas.</p>
+      <span class="servicio-tag tag-azul">Desarrollo</span>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon-wrap ic-rosa">🔍</div>
+      <h3>SEO & Facebook Ads</h3>
+      <p>Posicionamiento en Google y campañas de anuncios en redes sociales para que te encuentren cuando más importa.</p>
+      <span class="servicio-tag tag-rosa">Digital</span>
+    </div>
+    <div class="servicio-card reveal">
+      <div class="servicio-icon-wrap ic-naranja">🖥️</div>
+      <h3>Sistemas de Punto de Venta</h3>
+      <p>Soluciones de POS optimizadas con programación a medida, para que vendas más rápido y con menos errores.</p>
+      <span class="servicio-tag tag-naranja">Tecnología</span>
+    </div>
+  </div>
+
+  <!-- VISTA CUBO 3D -->
+  <div id="vistaCubo" style="display:none; margin-top:30px; position:relative; width:100%; height:580px; border-radius:24px; overflow:hidden; background:#0d0d1a;">
+
+    <canvas id="cuboCanvas" style="display:block; cursor:grab;"></canvas>
+
+    <!-- Info card cubo -->
+    <div class="cubo-info-card" id="cuboInfoCard">
+      <div class="cubo-card-name" id="cuboCardName"></div>
+      <div class="cubo-card-desc" id="cuboCardDesc"></div>
+      <div class="cubo-card-tag" id="cuboCardTag"></div>
+    </div>
+
+    <!-- Controles cubo -->
+    <div class="cubo-controls">
+      <button class="cubo-ctrl" onclick="cuboToggleAuto()" id="cuboBtnAuto" title="Auto-rotar">⟳</button>
+      <button class="cubo-ctrl" onclick="cuboResetView()" title="Centrar">◎</button>
+    </div>
+
+    <!-- Dots navegación -->
+    <div class="cubo-dots" id="cuboDots"></div>
+
+    <!-- Hint -->
+    <div class="cubo-hint">Arrastra · Scroll zoom · Clic en cara</div>
+  </div>
+
+</section>
+
+<!-- PROPUESTA DE VALOR -->
+<section id="propuesta">
+  <div class="propuesta-visual reveal-left">
+    <div class="propuesta-deco2"></div>
+    <div class="propuesta-deco1"></div>
+    <div class="propuesta-card-main">
+      <h3>Marketing cercano y real 🤝</h3>
+      <p>No soy una agencia fría. Soy Aldo, y me siento contigo a analizar tu negocio, entender tus problemas y diseñar una solución que funcione para ti — presencialmente.</p>
+    </div>
+  </div>
+
+  <div class="propuesta-content reveal-right">
+    <div class="section-label" style="color:var(--azul)">¿Por qué elegirme?</div>
+    <h2 class="section-title" style="font-size:clamp(36px,3.5vw,48px); line-height:1.22; margin-bottom:0">
+      La diferencia<br>está en el <span style="color:var(--rosa)">trato</span><span style="color:var(--azul)">.</span>
+    </h2>
+    <ul class="value-list">
+      <li class="value-item">
+        <div class="value-dot d-azul"></div>
+        <div>
+          <h4>Diagnóstico presencial gratuito</h4>
+          <p>Me reúno contigo para entender tu negocio antes de proponer cualquier solución. Sin costo inicial.</p>
+        </div>
+      </li>
+      <li class="value-item">
+        <div class="value-dot d-rosa"></div>
+        <div>
+          <h4>Soluciones para cualquier tipo de negocio</h4>
+          <p>Desde abogados y psicólogos hasta restaurantes y tiendas. Cada caso es único y lo tratamos así.</p>
+        </div>
+      </li>
+      <li class="value-item">
+        <div class="value-dot d-amarillo"></div>
+        <div>
+          <h4>Marketing + Tecnología en un solo lugar</h4>
+          <p>Combino estrategia de marketing con programación real para darte resultados que la mayoría no puede ofrecer.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="section-label" style="color:var(--azul)">¿Cómo trabajamos?</div>
+  <h2 class="section-title reveal" style="margin-bottom:0">
+    Un proceso simple<br>y sin sorpresas<span style="color:var(--rosa)">.</span>
+  </h2>
+  <div class="proceso-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-icon">☕</div>
+      <h3>Nos conocemos</h3>
+      <p>Una charla sin presión para entender tu negocio y tus metas.</p>
+    </div>
+    <div class="step-arrow reveal">→</div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-icon">🔍</div>
+      <h3>Diagnóstico</h3>
+      <p>Analizo tu situación actual, tu competencia y las oportunidades.</p>
+    </div>
+    <div class="step-arrow reveal">→</div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-icon">🗺️</div>
+      <h3>Estrategia</h3>
+      <p>Diseño un plan claro con acciones concretas y plazos reales.</p>
+    </div>
+    <div class="step-arrow reveal">→</div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-icon">🚀</div>
+      <h3>Ejecución</h3>
+      <p>Implementamos juntos y medimos los resultados en tiempo real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-gradient"></div>
+  <div class="section-label" style="color:rgba(255,255,255,0.5)">¿Listo para crecer?</div>
+  <h2 class="section-title reveal">
+    Tu primera consulta<br>es <span style="color:var(--amarillo)">completamente gratis</span>
+  </h2>
+  <p class="reveal">Sin compromisos. Sin presión. Solo resultados.</p>
+  <div class="cta-btns reveal">
+    <a href="mailto:aldoalfonsocis@gmail.com" class="btn-cta-main">✉️ Escríbeme un correo</a>
+    <a href="https://wa.me/522211241071" class="btn-cta-wa">📱 WhatsApp</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#" style="color:white">MARKETING <span>ac</span><span class="dot">•</span></a>
+      <p>Ideas que conectan. Estrategias que venden. Marketing cercano para negocios con grandes metas.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Marketing Digital</a></li>
+        <li><a href="#servicios">Identidad Visual</a></li>
+        <li><a href="#servicios">Páginas Web</a></li>
+        <li><a href="#servicios">SEO & Facebook Ads</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#problemas">¿Te identificas?</a></li>
+        <li><a href="#propuesta">Sobre mí</a></li>
+        <li><a href="#cta">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Marketing AC — Aldo Alfonso Cisneros Hernández</span>
+    <span>Diseñado con 💙 en Puebla, México</span>
+  </div>
+</footer>
+
+<script>
+// ---- CURSOR ----
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, button, .servicio-card, .problema-card, .step, .value-item').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+});
+
+// ---- NAV SCROLL ----
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ---- SCROLL REVEAL ----
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => observer.observe(el));
+
+// ---- CONTADOR ----
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1500;
+  const step = target / (duration / 16);
+  let current = 0;
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) { current = target; clearInterval(timer); }
+    el.textContent = Math.floor(current);
+  }, 16);
+}
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+// ---- STAGGER REVEAL para grids ----
+document.querySelectorAll('.servicios-grid .servicio-card, .problemas-grid .problema-card, .proceso-steps .step').forEach((card, i) => {
+  card.style.transitionDelay = (i * 0.1) + 's';
+});
+</script>
+<!-- Three.js para cubo -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+// ════════════════════════════════════════
+// TOGGLE VISTAS
+// ════════════════════════════════════════
+let cuboIniciado = false;
+
+function setView(vista) {
+  const cards = document.getElementById('vistaCards');
+  const cubo  = document.getElementById('vistaCubo');
+  const hint  = document.getElementById('toggleHint');
+  const btnT  = document.getElementById('btnTarjetas');
+  const btnC  = document.getElementById('btnCubo');
+
+  if (vista === 'tarjetas') {
+    cards.style.display = 'grid';
+    cubo.style.display  = 'none';
+    hint.style.display  = 'none';
+    btnT.classList.add('active');
+    btnC.classList.remove('active');
+  } else {
+    cards.style.display = 'none';
+    cubo.style.display  = 'block';
+    hint.style.display  = 'block';
+    btnT.classList.remove('active');
+    btnC.classList.add('active');
+    if (!cuboIniciado) { initCubo(); cuboIniciado = true; }
+    else if (window._cuboRenderer) {
+      const w = cubo.offsetWidth  || 800;
+      const h = cubo.offsetHeight || 580;
+      window._cuboRenderer.setSize(w, h, false);
+      window._cuboCamera.aspect = w / h;
+      window._cuboCamera.updateProjectionMatrix();
+    }
+  }
+}
+
+// ════════════════════════════════════════
+// CUBO 3D — Three.js
+// ════════════════════════════════════════
+function initCubo() {
+  const SERVICIOS = [
+    { nombre:'Marketing Tradicional',        desc:'Flyers, publicidad local, eventos y medios convencionales para conectar con tu comunidad.', tag:'Presencial',  tagColor:'#3b82f6', color:0x3b82f6, emoji:'📢' },
+    { nombre:'Identidad Visual',              desc:'Logotipos, paletas, tipografías y materiales que hacen tu marca memorable.',                tag:'Branding',    tagColor:'#ec4899', color:0xec4899, emoji:'🎨' },
+    { nombre:'Marketing Estratégico + CRM',   desc:'Definimos tu estrategia de crecimiento y creamos un CRM personalizado para tus clientes.',  tag:'Estrategia',  tagColor:'#f5a623', color:0xf5a623, emoji:'📊' },
+    { nombre:'Páginas Web & Landing Pages',   desc:'Sitios web modernos y optimizados que convierten visitas en clientes.',                     tag:'Desarrollo',  tagColor:'#22c55e', color:0x22c55e, emoji:'🌐' },
+    { nombre:'SEO & Facebook Ads',            desc:'Posicionamiento en Google y campañas de anuncios para que te encuentren cuando más importa.',tag:'Publicidad',  tagColor:'#a855f7', color:0xa855f7, emoji:'🔍' },
+    { nombre:'Sistemas de Punto de Venta',    desc:'Soluciones POS con programación a medida para vender más rápido y con menos errores.',      tag:'Tecnología',  tagColor:'#06b6d4', color:0x06b6d4, emoji:'💻' },
+  ];
+
+  // Dots
+  const dotsEl = document.getElementById('cuboDots');
+  const dots = SERVICIOS.map((s, i) => {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;';
+    const dot = document.createElement('div');
+    dot.className = 'cubo-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToFaceEmbed(i);
+    const lbl = document.createElement('span');
+    lbl.textContent = s.emoji;
+    lbl.style.cssText = 'font-size:12px;';
+    wrap.appendChild(dot); wrap.appendChild(lbl);
+    dotsEl.appendChild(wrap);
+    return dot;
+  });
+
+  // Renderer dentro del div
+  const container = document.getElementById('vistaCubo');
+  const canvas    = document.getElementById('cuboCanvas');
+
+  // Forzar que el contenedor tenga dimensiones antes de leer
+  const W = container.offsetWidth  || 800;
+  const H = container.offsetHeight || 580;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setSize(W, H, false);   // false = no modificar CSS del canvas
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x0d0d1a, 1);
+  window._cuboRenderer = renderer;
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 100);
+  camera.position.set(0, 0, 6);
+  window._cuboCamera = camera;
+
+  // Luces
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+  const dL = new THREE.DirectionalLight(0xf5a623, 1.0);
+  dL.position.set(4, 4, 4);
+  scene.add(dL);
+
+  const dL2 = new THREE.DirectionalLight(0x4488ff, 0.6);
+  dL2.position.set(-4, -2, -4);
+  scene.add(dL2);
+
+  const pL = new THREE.PointLight(0xffffff, 0.8, 20);
+  pL.position.set(0, 4, 2);
+  scene.add(pL);
+
+  // Textura por cara
+  function makeTexture(s) {
+    const sz = 512, cv = document.createElement('canvas');
+    cv.width = cv.height = sz;
+    const ctx = cv.getContext('2d');
+    ctx.fillStyle = '#0f0f1f'; ctx.fillRect(0,0,sz,sz);
+    const hex = '#' + s.color.toString(16).padStart(6,'0');
+    ctx.strokeStyle = hex; ctx.lineWidth = 12;
+    ctx.strokeRect(6,6,sz-12,sz-12);
+    ctx.fillStyle = hex; ctx.fillRect(6,6,sz-12,6);
+    ctx.font = '110px serif'; ctx.textAlign = 'center';
+    ctx.fillText(s.emoji, sz/2, 195);
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 36px Arial';
+    const words = s.nombre.split(' '); let lines = [], line = '';
+    for (const w of words) {
+      const t = line + (line?' ':'')+w;
+      if (ctx.measureText(t).width > sz-60) { if(line) lines.push(line); line=w; } else line=t;
+    }
+    if (line) lines.push(line);
+    const lH = 44, sY = 285-(lines.length-1)*lH/2;
+    lines.forEach((l,i) => ctx.fillText(l, sz/2, sY+i*lH));
+    const tW = ctx.measureText(s.tag).width+40;
+    ctx.fillStyle = hex;
+    ctx.beginPath(); ctx.roundRect(sz/2-tW/2,388,tW,34,17); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 16px Arial';
+    ctx.fillText(s.tag.toUpperCase(), sz/2, 410);
+    ctx.fillStyle = 'rgba(255,255,255,0.1)'; ctx.font = '14px Arial';
+    ctx.fillText('AC Marketing', sz/2, 475);
+    return new THREE.CanvasTexture(cv);
+  }
+
+  const faceOrder = [2,5,0,3,1,4];
+  const materials = faceOrder.map(i => new THREE.MeshStandardMaterial({ map:makeTexture(SERVICIOS[i]), metalness:0.3, roughness:0.4 }));
+
+  const geo  = new THREE.BoxGeometry(2.8,2.8,2.8);
+  const cubo = new THREE.Mesh(geo, materials);
+  scene.add(cubo);
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color:0xf5a623, transparent:true, opacity:0.3 }));
+  cubo.add(edges);
+
+  // Partículas
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(600*3);
+  for (let i=0;i<pPos.length;i++) pPos[i]=(Math.random()-0.5)*24;
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos,3));
+  scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color:0xf5a623, size:0.03, transparent:true, opacity:0.35 })));
+
+  // Estado
+  let isDragging=false, prevMouse={x:0,y:0}, autoRot=true;
+  let targetRot={x:0.3,y:0}, curRot={x:0.3,y:0};
+
+  canvas.addEventListener('mousedown', e => { isDragging=true; prevMouse={x:e.clientX,y:e.clientY}; canvas.style.cursor='grabbing'; });
+  canvas.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    targetRot.y += (e.clientX-prevMouse.x)*0.006;
+    targetRot.x += (e.clientY-prevMouse.y)*0.006;
+    targetRot.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, targetRot.x));
+    prevMouse={x:e.clientX,y:e.clientY}; autoRot=false;
+    document.getElementById('cuboBtnAuto').style.color='#444';
+  });
+  canvas.addEventListener('mouseup',    () => { isDragging=false; canvas.style.cursor='grab'; });
+  canvas.addEventListener('mouseleave', () => { isDragging=false; canvas.style.cursor='grab'; });
+  canvas.addEventListener('wheel', e => { camera.position.z = Math.max(3, Math.min(10, camera.position.z+e.deltaY*0.005)); }, {passive:true});
+
+  // Touch
+  canvas.addEventListener('touchstart', e => { isDragging=true; prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY}; autoRot=false; }, {passive:true});
+  canvas.addEventListener('touchmove',  e => { if(!isDragging)return; targetRot.y+=(e.touches[0].clientX-prevMouse.x)*0.006; targetRot.x+=(e.touches[0].clientY-prevMouse.y)*0.006; prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY}; }, {passive:true});
+  canvas.addEventListener('touchend',   () => isDragging=false);
+
+  // Clic en cara
+  const raycaster = new THREE.Raycaster();
+  canvas.addEventListener('click', e => {
+    const rect = canvas.getBoundingClientRect();
+    const mouse = new THREE.Vector2(
+      ((e.clientX-rect.left)/rect.width)*2-1,
+      -((e.clientY-rect.top)/rect.height)*2+1
+    );
+    raycaster.setFromCamera(mouse, camera);
+    const hits = raycaster.intersectObject(cubo);
+    if (hits.length>0) {
+      const sIdx = faceOrder[Math.floor(hits[0].faceIndex/2)];
+      showCuboCard(SERVICIOS[sIdx], sIdx);
+      cubo.scale.set(1.06,1.06,1.06);
+      setTimeout(()=>cubo.scale.set(1,1,1), 160);
+    }
+  });
+
+  function showCuboCard(s, idx) {
+    const card = document.getElementById('cuboInfoCard');
+    document.getElementById('cuboCardName').textContent = s.emoji+' '+s.nombre;
+    document.getElementById('cuboCardDesc').textContent = s.desc;
+    const tag = document.getElementById('cuboCardTag');
+    tag.textContent = s.tag; tag.style.background=s.tagColor+'22'; tag.style.color=s.tagColor; tag.style.border='1px solid '+s.tagColor+'55';
+    card.classList.add('show');
+    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    clearTimeout(window._cuboTimer);
+    window._cuboTimer = setTimeout(()=>card.classList.remove('show'),4000);
+  }
+
+  // Controles globales accesibles
+  window.cuboToggleAuto = function() {
+    autoRot = !autoRot;
+    document.getElementById('cuboBtnAuto').style.color = autoRot ? '#f5a623' : '#444';
+  };
+  window.cuboResetView = function() {
+    targetRot={x:0.3,y:0}; camera.position.z=6; autoRot=true;
+    document.getElementById('cuboBtnAuto').style.color='#f5a623';
+  };
+  window.goToFaceEmbed = function(idx) {
+    const angles=[{x:0,y:-Math.PI/2},{x:0,y:Math.PI/2},{x:-Math.PI/2,y:0},{x:Math.PI/2,y:0},{x:0,y:0},{x:0,y:Math.PI}];
+    const mapped=faceOrder.indexOf(idx);
+    if(mapped>=0){ targetRot={...angles[mapped]}; autoRot=false; showCuboCard(SERVICIOS[idx],idx); }
+  };
+
+  // Loop animación
+  (function animate() {
+    requestAnimationFrame(animate);
+    const t = performance.now()*0.001;
+    if (autoRot) { targetRot.y+=0.006; targetRot.x=Math.sin(t*0.25)*0.2; }
+    curRot.x += (targetRot.x-curRot.x)*0.05;
+    curRot.y += (targetRot.y-curRot.y)*0.05;
+    cubo.rotation.x=curRot.x; cubo.rotation.y=curRot.y;
+    cubo.position.y=Math.sin(t*0.7)*0.08;
+    dL.position.x=Math.sin(t*0.4)*5; dL.position.z=Math.cos(t*0.4)*5;
+    renderer.render(scene, camera);
+  })();
+
+  // Resize del contenedor
+  new ResizeObserver(()=>{
+    const w = container.offsetWidth  || 800;
+    const h = container.offsetHeight || 580;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }).observe(container);
+}
+</script>
+</body>
+</html>
